@@ -8,7 +8,7 @@ end  : 14
 #include <bangtal.h>
  
 SceneID scene1;
-ObjectID play, end, piece[13];
+ObjectID play, end, restart, piece[13];
 /*
 int x[4] = {0,282,564,846}, y[3] = {0,233,466}
 */
@@ -19,6 +19,11 @@ void ArrangePuzzel(const char* image, ObjectID object, int X, int Y) {
     object = createObject(image);
     locateObject(object, scene1, X, Y);
     showObject(object);
+}
+
+void restartt() {
+    hideObject(restart);
+    showObject(play);
 }
 
 void playGame() {
@@ -108,6 +113,10 @@ void startend(ObjectID object, int X, int Y, MouseAction action) {
     if (object == 13) {
         playGame();
         start = true;
+        ArrangePuzzel("images/redo.png", restart, 500, 100);
+    }
+    if (object == 15) {
+        restartt();
     }
     if (start == true) { 
         if (object == 2) {
